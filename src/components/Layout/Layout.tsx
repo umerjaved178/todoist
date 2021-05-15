@@ -6,7 +6,7 @@ function Layout(props: any) {
     return (
         <div className={classes.Layout}>
             <Toolbar />
-            <main>{props.children}</main>
+            <main className={classes.LayoutChild}>{props.children}</main>
         </div>
     )
 }

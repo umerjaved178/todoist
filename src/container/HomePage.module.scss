@@ -1,0 +1,14 @@
+.HomePageLayout {
+    display: inline-grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr 7fr;
+}
+
+.LayoutToDos {
+    background-color: white;
+    border: 1px #e3e3e3 solid;
+    height: 100vh;
+    padding: 0 3rem;
+
+    
+}
