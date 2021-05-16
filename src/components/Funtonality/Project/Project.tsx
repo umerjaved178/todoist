@@ -7,9 +7,9 @@ interface Props {
 function Project(props: Props) {
     const {project} = props
     return (
-        <div>
-            <p>{project}</p>
-        </div>
+        
+            <span>{project}</span>
+        
     )
 }
 

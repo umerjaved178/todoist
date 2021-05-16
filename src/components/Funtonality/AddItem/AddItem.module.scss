@@ -1,0 +1,47 @@
+.AddItemButton {
+    display: inline-flex;
+    align-items: center;
+    color: grey; 
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.AddItemButton:active{
+    transform: translateY(2px);
+}
+
+.FormArea {
+    margin: .7rem .5rem;
+}
+
+input {
+    width: 97%;
+    padding: .7rem;
+    border: rgb(207, 207, 207) solid 1px;
+    border-radius: 2px;
+}
+input:focus {
+    border: rgb(153, 153, 153) solid 1px;
+    outline: none;
+}
+
+.ButtonGroupParent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Icons {
+    display: inline-flex;
+}
+
+.Icons > div {
+    margin-left: 20px;
+    
+}
+.Icons > div:hover{
+    cursor: pointer;
+}
+.Icons > div:active{
+    transform: translateY(1.5px);
+}

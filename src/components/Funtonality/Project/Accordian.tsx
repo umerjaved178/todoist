@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     item: {
         padding: "0 2rem",
         margin: 0,
+        flexDirection: 'column'
     }
   }));
 
@@ -37,10 +38,9 @@ function Accordian(props: Props) {
                 <AccordionDetails 
                     className={classes.item}
                     classes={{ root: classes.expandedStyle }}
-                >
-                    <Typography style={{fontSize: ".75rem"}}>
-                        {projects.map(x => <Project project={x}/>)}
-                    </Typography>
+                >   
+                    {React.Children.toArray(
+                        projects.map(x => <Typography style={{fontSize: ".75rem"}}> {x} </Typography>))}      
                 </AccordionDetails>
             </Accordion>
         </div>

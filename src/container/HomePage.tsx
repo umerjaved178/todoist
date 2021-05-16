@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AddItem from '../components/Funtonality/AddItem/AddItem'
 import Day from '../components/Funtonality/Day/Day'
 import Accordian from '../components/Funtonality/Project/Accordian'
 import Project from '../components/Funtonality/Project/Project'
@@ -58,15 +59,15 @@ function HomePage() {
                 {React.Children.toArray(days.map(x => <Day day={x.day} icon={x.icon} />))}     
 
                 {/* Accordian  */}
-                {/* <h4>Projects</h4> */}
                 <Accordian projects={projects}/>
-                {/* {React.Children.toArray(projects.map(x => <Project project={x} />))}     */}
             </div>
 
             <div className={classes.LayoutToDos}>
                 <p style={{fontSize: "1.5rem"}}>Inbox</p>
                 {React.Children.toArray(toDos.map(x => <ToDo toDo={x.toDo} />))}
+                <AddItem />
             </div>
+           
         </div>
     )
 }

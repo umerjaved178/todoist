@@ -1,0 +1,15 @@
+.CancelButton {
+    border-radius: 3px;
+    color: grey;
+    font-weight: 900;
+    display: inline-block;
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+
+.CancelButton:hover {
+    cursor: pointer;
+}
+.CancelButton:active {
+    transform: translateY(2px);
+}
