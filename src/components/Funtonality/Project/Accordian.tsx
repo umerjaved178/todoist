@@ -5,29 +5,46 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Project from './Project';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-      width: "80%",
+      width: "100%",
     },
     expandedStyle: {
         backgroundColor: "#F7F7F7",
+        margin: 0,
+        paddingLeft: 0,
     },
     item: {
         padding: "0 2rem",
         margin: 0,
         flexDirection: 'column'
+    },
+    eachProj: {
+        fontSize: ".75rem",
+        cursor: "pointer",
+        margin: 0,
+        padding: ".5rem",
+        backgroundColor: "#F7F7F7",
+        '&:hover': {
+            backgroundColor: "white",
+        },
+        '&:focus': {
+            backgroundColor: "white",
+            fontWeight: "bolder",
+        }
+        
     }
   }));
 
 interface Props {
-    projects: string[]
+    projects: string[],
+    clickHandler: Function,
 }
 
 function Accordian(props: Props) {
     const classes = useStyles();
-    const {projects} = props
+    const {projects, clickHandler} = props
 
     return (
         <div className={classes.root}>
@@ -35,13 +52,10 @@ function Accordian(props: Props) {
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} classes={{ expanded: classes.expandedStyle, root: classes.expandedStyle}}>
                     <Typography style={{fontWeight: 600}} >Projects</Typography>
                 </AccordionSummary>
-                <AccordionDetails 
-                    className={classes.item}
-                    classes={{ root: classes.expandedStyle }}
-                >   
                     {React.Children.toArray(
-                        projects.map(x => <Typography style={{fontSize: ".75rem"}}> {x} </Typography>))}      
-                </AccordionDetails>
+                        projects.map(x => 
+                            <p className={classes.eachProj} tabIndex={1} onClick={()=> clickHandler(x)}> {x} </p> 
+                    ))}      
             </Accordion>
         </div>
     )

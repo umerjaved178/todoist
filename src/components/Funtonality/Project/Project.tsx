@@ -7,9 +7,7 @@ interface Props {
 function Project(props: Props) {
     const {project} = props
     return (
-        
-            <span>{project}</span>
-        
+        <span style={{backgroundColor: "red", cursor: "pointer"}}>{project} </span>
     )
 }
 

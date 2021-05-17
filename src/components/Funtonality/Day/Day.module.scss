@@ -1,0 +1,14 @@
+.Day {
+    display: block;
+    margin-top: .5rem;
+    
+}
+.Day:hover {
+    cursor: pointer;
+    background: white;
+}
+.Day:active,
+.Day:focus {
+    font-weight: bolder;
+    background: white;
+}

@@ -11,28 +11,28 @@ function HomePage() {
         [
             {
                 toDo: "cooking and planning",
-                project: "none",
-                dueDay: "none"
+                project: "MUSIC",
+                dueDay: "Inbox"
             },
             {
                 toDo: "Sheesha",
                 project: "none",
-                dueDay: "none"
+                dueDay: "Inbox"
             },
             {
                 toDo: "Gardening",
                 project: "none",
-                dueDay: "none"
+                dueDay: "Inbox"
             },
             {
                 toDo: "Sleeping",
                 project: "none",
-                dueDay: "today"
+                dueDay: "Today"
             },
             {
                 toDo: "cooking & future planning",
-                project: "future",
-                dueDay: "nextWeek"
+                project: "FUTURE",
+                dueDay: "Next 7 days"
             },
         ]
     )
@@ -51,20 +51,33 @@ function HomePage() {
         }, 
     ])
     const [projects, setProjects] = useState(["OFFICE", "DAILY", "FUTURE", "WORDS", "MUSIC"])
+    const [filterDay, setFilterDay] = useState("Inbox")
+
+    const filterClickHandler = (current: string) => {
+        setFilterDay(current)
+    }
+    
+    var customisedResult = toDos.filter(x => 
+        (filterDay === "Inbox" || filterDay === "Today" || filterDay === "Next 7 days") 
+        ? (x.dueDay === filterDay)
+        : (x.project === filterDay))
+    
     
     return (
         <div className={classes.HomePageLayout}>
-            <div>
+            <div >
                 {/* Date Elements */}
-                {React.Children.toArray(days.map(x => <Day day={x.day} icon={x.icon} />))}     
+                <div className={classes.Date}>
+                    {React.Children.toArray(days.map(x => <Day day={x.day} icon={x.icon} clickHandler={filterClickHandler}/>))}     
+                </div>
 
                 {/* Accordian  */}
-                <Accordian projects={projects}/>
+                <Accordian projects={projects} clickHandler={filterClickHandler}/>
             </div>
 
             <div className={classes.LayoutToDos}>
-                <p style={{fontSize: "1.5rem"}}>Inbox</p>
-                {React.Children.toArray(toDos.map(x => <ToDo toDo={x.toDo} />))}
+                <p className={classes.ToDosHeading}> {filterDay} </p>
+                {React.Children.toArray(customisedResult.map(x => <ToDo toDo={x.toDo} />))}
                 <AddItem />
             </div>
            
