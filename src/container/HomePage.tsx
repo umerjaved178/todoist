@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import AddItem from '../components/Funtonality/AddItem/AddItem'
 import Day from '../components/Funtonality/Day/Day'
 import Accordian from '../components/Funtonality/Project/Accordian'
-import Project from '../components/Funtonality/Project/Project'
 import ToDo from '../components/Funtonality/toDo/ToDo'
 import classes from './HomePage.module.scss'
 
