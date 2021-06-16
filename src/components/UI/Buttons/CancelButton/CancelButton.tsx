@@ -1,20 +1,21 @@
-import React from 'react'
-import classes from './CancelButton.module.scss'
+import React from "react";
+import classes from "./CancelButton.module.scss";
 
 interface Props {
-    text: string
+  text: string;
+  onClick: () => void;
 }
 
 function CancelButton(props: Props) {
-    const {text} = props
+  const { text, onClick } = props;
 
-    return (
-        <div>
-            <div className={classes.CancelButton} >
-                <p>{text}</p>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <div className={classes.CancelButton} onClick={onClick}>
+        <p>{text}</p>
+      </div>
+    </div>
+  );
 }
 
-export default CancelButton
+export default CancelButton;
