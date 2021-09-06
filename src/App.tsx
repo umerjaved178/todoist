@@ -1,15 +1,15 @@
-import React from 'react';
-import classes from './App.module.css'
-import Layout from './components/Layout/Layout';
-import HomePage from './container/HomePage';
+import Layout from "Layout/Layout";
+import HomePage from "container/Home/HomePage";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "Theme/createTheme";
 
 function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Layout>
         <HomePage />
       </Layout>
-    </div>
+    </ThemeProvider>
   );
 }
 
