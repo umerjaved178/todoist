@@ -1,6 +1,6 @@
-import ToDo from "components/toDo/ToDo";
+import ToDo from "components/Task/Task";
 import React, { useState } from "react";
-import AddItem from "components/AddItem/AddItem";
+import AddItem from "components/AddTask/AddTask";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { SideDrawer } from "components/UI/Navigation/SideDrawer/SideDrawer";
 
@@ -8,7 +8,7 @@ import { makeStyles, Theme, Hidden } from "@material-ui/core";
 import { toDosArray, daysArray, projectsArray } from "../data";
 import { toggleMobileDrawer } from "redux/slices/slice";
 import { Box } from "@material-ui/core";
-import { Action } from "container/Action/Action";
+import { Action } from "container/ActionArea/Action";
 
 const useStyles = makeStyles((theme: Theme) => ({
   HomePageLayout: {
@@ -46,12 +46,12 @@ const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const showMobileDrawer = useAppSelector(
-    (state) => state.toggleDrawerReducer.value
+    (state) => state.toggleDrawerReducer.show
   );
 
-  const filterClickHandler = (current: string) => {
+  const filterClickHandler = (current: string, mobileScreen?: boolean) => {
     setFilterDay(current);
-    dispatch(toggleMobileDrawer());
+    mobileScreen && dispatch(toggleMobileDrawer());
   };
 
   let customisedResult = toDos.filter((x) =>
@@ -78,6 +78,7 @@ const HomePage: React.FC = () => {
             projects={projects}
             clickHandler={filterClickHandler}
             days={days}
+            mobileScreen
           />
         </SideDrawer>
       </Hidden>

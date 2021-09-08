@@ -18,7 +18,7 @@ interface Props {
 function Layout(props: Props) {
   const classes = useStyles();
   const showMobileDrawer = useAppSelector(
-    (state) => state.toggleDrawerReducer.value
+    (state) => state.toggleDrawerReducer.show
   );
 
   return (

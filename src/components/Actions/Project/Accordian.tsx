@@ -8,11 +8,16 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      "& .MuiPaper-root": {
+        backgroundColor: theme.palette.primary.light,
+      },
+    },
   },
   expandedStyle: {
     padding: 0,
     [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(0, 2),
+      margin: theme.spacing(0, 1),
       backgroundColor: theme.palette.primary.light,
     },
   },
@@ -43,9 +48,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface Props {
   projects: string[];
   clickHandler: Function;
+  mobileScreen?: boolean;
 }
 
-const Accordian: React.FC<Props> = ({ projects, clickHandler }) => {
+const Accordian: React.FC<Props> = ({
+  projects,
+  clickHandler,
+  mobileScreen,
+}) => {
   const classes = useStyles();
 
   return (
@@ -65,7 +75,7 @@ const Accordian: React.FC<Props> = ({ projects, clickHandler }) => {
             <p
               className={classes.eachProj}
               tabIndex={1}
-              onClick={() => clickHandler(x)}
+              onClick={() => clickHandler(x, mobileScreen)}
             >
               {x}
             </p>

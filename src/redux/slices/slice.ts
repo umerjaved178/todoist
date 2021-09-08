@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface CounterState {
-  value: boolean;
+interface showType {
+  show: boolean;
 }
 
-const initialState: CounterState = {
-  value: false,
+const initialState: showType = {
+  show: false,
 };
 
-export const mainSlice = createSlice({
+export const slice = createSlice({
   name: "toggleMobileSideDrawer",
   initialState,
   reducers: {
     toggleMobileDrawer: (state) => {
-      state.value = !state.value;
+      state.show = !state.show;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleMobileDrawer } = mainSlice.actions;
+export const { toggleMobileDrawer } = slice.actions;
 
-export default mainSlice.reducer;
+export default slice.reducer;

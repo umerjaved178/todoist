@@ -10,7 +10,7 @@ interface Props {
   projects: string[];
 }
 
-const AddItem: React.FC<Props> = ({ projects }) => {
+const AddTask: React.FC<Props> = ({ projects }) => {
   const [input, setInput] = useState("");
   const [showProjects, setShowProjects] = useState(false);
   const [showDays, setShowDays] = useState(false);
@@ -73,4 +73,4 @@ const AddItem: React.FC<Props> = ({ projects }) => {
   );
 };
 
-export default AddItem;
+export default AddTask;

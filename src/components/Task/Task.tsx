@@ -15,7 +15,7 @@ interface Props {
   toDo: string;
 }
 
-const ToDo: React.FC<Props> = ({ toDo }) => {
+const Task: React.FC<Props> = ({ toDo }) => {
   const [checked, setChecked] = React.useState(false);
   const classes = useStyles();
 
@@ -37,4 +37,4 @@ const ToDo: React.FC<Props> = ({ toDo }) => {
   );
 };
 
-export default ToDo;
+export default Task;

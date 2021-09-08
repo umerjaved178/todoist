@@ -22,13 +22,18 @@ interface Props {
   day: string;
   icon: any;
   clickHandler: Function;
+  mobileScreen?: boolean;
 }
 
-const Day: React.FC<Props> = ({ day, icon, clickHandler }) => {
+const Day: React.FC<Props> = ({ day, icon, clickHandler, mobileScreen }) => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.day} tabIndex={1} onClick={() => clickHandler(day)}>
+    <Box
+      className={classes.day}
+      tabIndex={1}
+      onClick={() => clickHandler(day, mobileScreen)}
+    >
       <p>{day}</p>
     </Box>
   );

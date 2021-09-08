@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import mainReducer from "redux/slices/slice";
+import toggleReducer from "redux/slices/slice";
 
 export const store = configureStore({
   reducer: {
-    toggleDrawerReducer: mainReducer,
+    toggleDrawerReducer: toggleReducer,
   },
 });
 
