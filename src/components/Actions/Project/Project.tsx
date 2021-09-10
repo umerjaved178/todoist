@@ -51,11 +51,7 @@ interface Props {
   mobileScreen?: boolean;
 }
 
-const Accordian: React.FC<Props> = ({
-  projects,
-  clickHandler,
-  mobileScreen,
-}) => {
+const Project: React.FC<Props> = ({ projects, clickHandler, mobileScreen }) => {
   const classes = useStyles();
 
   return (
@@ -86,4 +82,4 @@ const Accordian: React.FC<Props> = ({
   );
 };
 
-export default Accordian;
+export default Project;

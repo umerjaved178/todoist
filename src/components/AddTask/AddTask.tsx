@@ -1,10 +1,31 @@
-import Modal from "./Modal/Modal";
 import { HiPlusSm } from "react-icons/hi";
-import { Fragment, useState } from "react";
-import classes from "./AddItem.module.scss";
-import { FaRegCalendarAlt, FaRegListAlt } from "react-icons/fa";
-import AddButton from "components/UI/Buttons/AddButton/AddButton";
-import CancelButton from "components/UI/Buttons/CancelButton/CancelButton";
+import { useState } from "react";
+import IconGroup from "./IconGroup/IconGroup";
+import { Buttons } from "./Buttons/Buttons";
+import { makeStyles, TextField, Theme, Box } from "@material-ui/core";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  formHeader: {
+    color: "grey",
+    display: "flex",
+    alignItems: "center",
+    padding: ".5rem",
+    cursor: "pointer",
+    "&:active": {
+      transform: "translateY(2px)",
+    },
+  },
+  form: {
+    "&:focus ": {
+      border: "1px solid #db4c3f",
+    },
+  },
+  buttonsBar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+}));
 
 interface Props {
   projects: string[];
@@ -12,64 +33,39 @@ interface Props {
 
 const AddTask: React.FC<Props> = ({ projects }) => {
   const [input, setInput] = useState("");
-  const [showProjects, setShowProjects] = useState(false);
-  const [showDays, setShowDays] = useState(false);
-  const [hiddenForm, setHiddenForm] = useState(true);
+  const [hidden, setHidden] = useState(true);
+  const classes = useStyles();
 
   const toggle = () => {
-    setHiddenForm((prevState) => !prevState);
+    setHidden((prevState) => !prevState);
   };
 
   const onCancelHandler = () => {
-    setHiddenForm(true);
+    setHidden(true);
     setInput("");
   };
 
   return (
-    <Fragment>
-      <div className={classes.AddItemButton} onClick={toggle}>
+    <>
+      <Box className={classes.formHeader} onClick={toggle}>
         <HiPlusSm color="red" size={20} />
-        <span> &nbsp; Add Task </span>
-      </div>
+        <p> &nbsp; Add Task </p>
+      </Box>
 
-      <div className={classes.FormArea} hidden={hiddenForm}>
-        <input
-          type="text"
+      <Box hidden={hidden}>
+        <TextField
+          variant="outlined"
           onChange={(e) => setInput(e.target.value)}
           value={input}
+          fullWidth
+          className={classes.form}
         />
-        <div>
-          <div style={{ display: "inline-flex", marginBottom: "0" }}>
-            <AddButton text="Add Task" />
-            <CancelButton text="Cancel" onClick={onCancelHandler} />
-          </div>
-          <div className={classes.Icons}>
-            <div
-              onClick={() => {
-                setShowDays((prevState) => !prevState);
-                setShowProjects(false);
-              }}
-            >
-              <FaRegCalendarAlt size={18} color="grey" />
-            </div>
-            <div
-              onClick={() => {
-                setShowProjects((prevState) => !prevState);
-                setShowDays(false);
-              }}
-            >
-              <FaRegListAlt size={18} color="grey" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div hidden={!showProjects}>
-        <Modal items={projects} />
-      </div>
-      <div hidden={!showDays}>
-        <Modal items={["INBOX", "TODAY", "NEXT WEEK"]} />
-      </div>
-    </Fragment>
+        <Box className={classes.buttonsBar}>
+          <Buttons cancel={onCancelHandler} />
+          <IconGroup projects={projects} />
+        </Box>
+      </Box>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 900,
     borderRadius: "3px",
     display: "inline-block",
-    margin: "1rem 0 0.5rem 0",
+    margin: "1rem 0 1rem 0",
     padding: theme.spacing(0, 2),
     color: theme.palette.common.white,
     backgroundColor: theme.palette.info.main,

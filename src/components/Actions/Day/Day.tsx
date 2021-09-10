@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
   day: string;
-  icon: any;
+  icon: string;
   clickHandler: Function;
   mobileScreen?: boolean;
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-import Accordian from "components/Actions/Project/Accordian";
+import Project from "components/Actions/Project/Project";
 import { makeStyles, Theme } from "@material-ui/core";
 import Day from "components/Actions/Day/Day";
+import { dayType } from "literals/types";
 
 const useStyles = makeStyles((theme: Theme) => ({
   ActionArea: {
@@ -12,9 +13,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  projects: any;
-  clickHandler: any;
-  days: any;
+  projects: string[];
+  clickHandler: Function;
+  days: dayType[];
   mobileScreen?: boolean;
 }
 
@@ -29,7 +30,7 @@ export const Action: React.FC<Props> = ({
     <Box className={classes.ActionArea}>
       <Box>
         {React.Children.toArray(
-          days.map((x: any) => (
+          days.map((x: dayType) => (
             <Day
               day={x.day}
               icon={x.icon}
@@ -39,7 +40,7 @@ export const Action: React.FC<Props> = ({
           ))
         )}
       </Box>
-      <Accordian
+      <Project
         projects={projects}
         clickHandler={clickHandler}
         mobileScreen={mobileScreen}
