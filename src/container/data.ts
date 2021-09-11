@@ -1,4 +1,4 @@
-export const toDosArray = [
+export const allTasks = [
   {
     toDo: "cooking and planning",
     project: "MUSIC",
@@ -26,7 +26,7 @@ export const toDosArray = [
   },
 ];
 
-export const daysArray = [
+export const dueDays = [
   {
     day: "Inbox",
     icon: "BsInboxFill",
@@ -41,4 +41,10 @@ export const daysArray = [
   },
 ];
 
-export const projectsArray = ["OFFICE", "DAILY", "FUTURE", "WORDS", "MUSIC"];
+export const projectsArray = [
+  "OFFICE 🙌",
+  "DAILY 🚀",
+  "FUTURE 🎯",
+  "WORDS 📚",
+  "MUSIC 🎼",
+];

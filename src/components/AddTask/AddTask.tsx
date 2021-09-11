@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
   projects: string[];
+  day: string;
 }
 
-const AddTask: React.FC<Props> = ({ projects }) => {
+const AddTask: React.FC<Props> = ({ projects, day }) => {
   const [input, setInput] = useState("");
   const [hidden, setHidden] = useState(true);
   const classes = useStyles();
@@ -44,6 +45,8 @@ const AddTask: React.FC<Props> = ({ projects }) => {
     setHidden(true);
     setInput("");
   };
+
+  console.log(day);
 
   return (
     <>

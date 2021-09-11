@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 import { toggleMobileDrawer } from "redux/slices/slice";
 import { useAppDispatch } from "redux/hooks";
 
@@ -21,9 +21,9 @@ export const BackDrop: React.FC<Props> = ({ show }) => {
   const classes = useStyles();
 
   return show ? (
-    <div
+    <Box
       className={classes.backDrop}
       onClick={() => dispatch(toggleMobileDrawer())}
-    ></div>
+    ></Box>
   ) : null;
 };

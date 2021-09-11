@@ -2,7 +2,7 @@ import Logo from "./Logo/Logo";
 import { IconContext } from "react-icons";
 import { GiHamburgerMenu } from "react-icons/gi";
 import ToolbarButtons from "./NavbarButtons/NavbarButtons";
-import { makeStyles, Theme, Hidden } from "@material-ui/core";
+import { makeStyles, Theme, Hidden, Box } from "@material-ui/core";
 import { toggleMobileDrawer } from "redux/slices/slice";
 import { useAppDispatch } from "redux/hooks";
 
@@ -25,9 +25,9 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={classes.navbar}>
+    <Box className={classes.navbar}>
       <IconContext.Provider value={{ color: "white" }}>
-        <div className={classes.navbarContent}>
+        <Box className={classes.navbarContent}>
           <Hidden smUp>
             <GiHamburgerMenu
               onClick={() => dispatch(toggleMobileDrawer())}
@@ -38,9 +38,9 @@ const Navbar = () => {
             <Logo size="25" />
           </Hidden>
           <ToolbarButtons />
-        </div>
+        </Box>
       </IconContext.Provider>
-    </div>
+    </Box>
   );
 };
 

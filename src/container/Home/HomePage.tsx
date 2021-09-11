@@ -1,14 +1,12 @@
-import ToDo from "components/Task/Task";
 import React, { useState } from "react";
-import AddItem from "components/AddTask/AddTask";
-import { useAppSelector, useAppDispatch } from "redux/hooks";
-import { SideDrawer } from "components/UI/Navigation/SideDrawer/SideDrawer";
-
-import { makeStyles, Theme, Hidden } from "@material-ui/core";
-import { toDosArray, daysArray, projectsArray } from "../data";
-import { toggleMobileDrawer } from "redux/slices/slice";
-import { Box } from "@material-ui/core";
+import ToDo from "components/Task/Task";
+import AddTask from "components/AddTask/AddTask";
+import { allTasks, projectsArray } from "../data";
 import { Action } from "container/ActionArea/Action";
+import { toggleMobileDrawer } from "redux/slices/slice";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
+import { makeStyles, Theme, Hidden, Box } from "@material-ui/core";
+import { SideDrawer } from "components/UI/Navigation/SideDrawer/SideDrawer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   HomePageLayout: {
@@ -37,13 +35,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const HomePage: React.FC = () => {
-  const [toDos, setToDos] = useState(toDosArray);
-  const [days, setDays] = useState(daysArray);
+  const [tasks, setTasks] = useState(allTasks);
   const [projects, setProjects] = useState(projectsArray);
   const [filterDay, setFilterDay] = useState("Inbox");
-  const classes = useStyles();
-
   const dispatch = useAppDispatch();
+  const classes = useStyles();
 
   const showMobileDrawer = useAppSelector(
     (state) => state.toggleDrawerReducer.show
@@ -54,7 +50,7 @@ const HomePage: React.FC = () => {
     mobileScreen && dispatch(toggleMobileDrawer());
   };
 
-  let customisedResult = toDos.filter((x) =>
+  let customisedResult = tasks.filter((x) =>
     filterDay === "Inbox" ||
     filterDay === "Today" ||
     filterDay === "Next 7 days"
@@ -65,30 +61,25 @@ const HomePage: React.FC = () => {
   return (
     <Box className={classes.HomePageLayout}>
       <Hidden xsDown>
-        <Action
-          projects={projects}
-          clickHandler={filterClickHandler}
-          days={days}
-        />
+        <Action projects={projects} clickHandler={filterClickHandler} />
       </Hidden>
 
       <Hidden smUp>
         <SideDrawer show={showMobileDrawer}>
           <Action
+            mobileScreen
             projects={projects}
             clickHandler={filterClickHandler}
-            days={days}
-            mobileScreen
           />
         </SideDrawer>
       </Hidden>
 
       <Box className={classes.LayoutToDos}>
-        <p className={classes.ToDosHeading}> {filterDay} </p>
+        <p className={classes.ToDosHeading}>{filterDay}</p>
         {React.Children.toArray(
           customisedResult.map((x) => <ToDo toDo={x.toDo} />)
         )}
-        <AddItem projects={projects} />
+        <AddTask projects={projects} day={filterDay} />
       </Box>
     </Box>
   );

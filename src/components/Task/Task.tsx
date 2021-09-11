@@ -1,15 +1,14 @@
 import React from "react";
-import classes from "./ToDo.module.scss";
 import Checkbox from "@material-ui/core/Checkbox";
 import CircleCheckedFilled from "@material-ui/icons/CheckCircle";
 import CircleUnchecked from "@material-ui/icons/RadioButtonUnchecked";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles({
   divider: {
     borderTop: "1px solid rgb(236, 236, 236)",
   },
-}));
+});
 
 interface Props {
   toDo: string;
@@ -24,7 +23,7 @@ const Task: React.FC<Props> = ({ toDo }) => {
   };
 
   return (
-    <div>
+    <Box>
       <Checkbox
         icon={<CircleUnchecked />}
         checked={checked}
@@ -33,7 +32,7 @@ const Task: React.FC<Props> = ({ toDo }) => {
       />
       <span>{toDo}</span>
       <hr className={classes.divider} />
-    </div>
+    </Box>
   );
 };
 

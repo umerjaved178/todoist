@@ -1,6 +1,6 @@
 import { FaRegCalendarAlt, FaRegListAlt } from "react-icons/fa";
 import Dropdown from "../Dropdown/Dropdown";
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
   IconGroup: {
@@ -15,17 +15,17 @@ interface Props {
 const IconGroup: React.FC<Props> = ({ projects }) => {
   const classes = useStyles();
   return (
-    <div className={classes.IconGroup}>
-      <div>
+    <Box className={classes.IconGroup}>
+      <Box>
         <Dropdown
-          options={["INBOX", "TODAY", "NEXT WEEK"]}
+          options={["Inbox", "Today", "Next Week"]}
           Icon={FaRegCalendarAlt}
         />
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Dropdown options={projects} Icon={FaRegListAlt} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

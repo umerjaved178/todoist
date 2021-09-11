@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -25,7 +25,7 @@ interface Props {
   mobileScreen?: boolean;
 }
 
-const Day: React.FC<Props> = ({ day, icon, clickHandler, mobileScreen }) => {
+const Day: React.FC<Props> = ({ day, clickHandler, mobileScreen }) => {
   const classes = useStyles();
 
   return (

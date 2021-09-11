@@ -2,7 +2,7 @@ import React from "react";
 import Accordion from "@material-ui/core/Accordion";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Theme, makeStyles } from "@material-ui/core/styles";
+import { Theme, makeStyles, Box } from "@material-ui/core";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -55,7 +55,7 @@ const Project: React.FC<Props> = ({ projects, clickHandler, mobileScreen }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Accordion elevation={0}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -66,6 +66,7 @@ const Project: React.FC<Props> = ({ projects, clickHandler, mobileScreen }) => {
         >
           <Typography style={{ fontWeight: 600 }}>Projects</Typography>
         </AccordionSummary>
+
         {React.Children.toArray(
           projects.map((x) => (
             <p
@@ -78,7 +79,7 @@ const Project: React.FC<Props> = ({ projects, clickHandler, mobileScreen }) => {
           ))
         )}
       </Accordion>
-    </div>
+    </Box>
   );
 };
 

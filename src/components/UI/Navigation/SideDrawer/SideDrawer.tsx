@@ -1,4 +1,4 @@
-import { makeStyles, Theme, Typography } from "@material-ui/core";
+import { makeStyles, Theme, Typography, Box } from "@material-ui/core";
 import cn from "classnames";
 import Logo from "../NavBar/Logo/Logo";
 import { BackDrop } from "./BackDrop";
@@ -45,19 +45,19 @@ export const SideDrawer: React.FC<Props> = ({ children, show }) => {
   return (
     <>
       <BackDrop show={show} />
-      <div
+      <Box
         className={
           show
             ? cn(classes.sideDrawer, classes.Open)
             : cn(classes.sideDrawer, classes.Close)
         }
       >
-        <div className={classes.mobileNavBar}>
+        <Box className={classes.mobileNavBar}>
           <Logo size="40" />
           <Typography variant="h4">ToDoist</Typography>
-        </div>
-        <div className={classes.content}>{children}</div>
-      </div>
+        </Box>
+        <Box className={classes.content}>{children}</Box>
+      </Box>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { HiPlusSm } from "react-icons/hi";
 import { FaPizzaSlice } from "react-icons/fa";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
   ToolbarButtons: {
@@ -16,12 +16,12 @@ const ToolbarButtons: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.ToolbarButtons}>
+    <Box className={classes.ToolbarButtons}>
       <HiPlusSm size={35} />
-      <div className={classes.Margin}>
+      <Box className={classes.Margin}>
         <FaPizzaSlice size={22} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
   AddButton: {
@@ -27,9 +27,9 @@ const AddButton: React.FC<Props> = ({ text }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.AddButton}>
+    <Box className={classes.AddButton}>
       <p>{text}</p>
-    </div>
+    </Box>
   );
 };
 

@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
   CancelButton: {
@@ -25,11 +25,9 @@ const CancelButton: React.FC<Props> = ({ text, onClick }) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <div className={classes.CancelButton} onClick={onClick}>
-        <p>{text}</p>
-      </div>
-    </div>
+    <Box className={classes.CancelButton} onClick={onClick}>
+      <p>{text}</p>
+    </Box>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
   Icon: {
@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     "&:active": {
       transform: "translateY(1.5px)",
     },
+  },
+  text: {
+    fontSize: "12px",
   },
 }));
 
@@ -40,10 +43,10 @@ const Dropdown: React.FC<Props> = ({ options, Icon }) => {
   };
 
   return (
-    <div>
-      <div onClick={handleClickListItem}>
+    <Box>
+      <Box onClick={handleClickListItem}>
         <Icon className={classes.Icon} size={18} color="grey" />
-      </div>
+      </Box>
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
@@ -54,6 +57,7 @@ const Dropdown: React.FC<Props> = ({ options, Icon }) => {
         {options.map((option, index) => (
           <MenuItem
             key={option}
+            className={classes.text}
             selected={index === selectedIndex}
             onClick={(event) => handleMenuItemClick(event, index)}
           >
@@ -61,7 +65,7 @@ const Dropdown: React.FC<Props> = ({ options, Icon }) => {
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </Box>
   );
 };
 
