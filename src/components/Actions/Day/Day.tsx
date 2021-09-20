@@ -20,19 +20,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
   day: string;
+  setTasks: Function;
   icon: string;
-  clickHandler: Function;
+  filterDays: Function;
   mobileScreen?: boolean;
 }
 
-const Day: React.FC<Props> = ({ day, clickHandler, mobileScreen }) => {
+const Day: React.FC<Props> = ({ day, setTasks, filterDays, mobileScreen }) => {
   const classes = useStyles();
 
   return (
     <Box
       className={classes.day}
       tabIndex={1}
-      onClick={() => clickHandler(day, mobileScreen)}
+      onClick={() => filterDays(day, mobileScreen)}
     >
       <p>{day}</p>
     </Box>

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import ToDo from "components/Task/Task";
 import AddTask from "components/AddTask/AddTask";
 import { allTasks, projectsArray } from "../data";
-import { Action } from "container/ActionArea/Action";
-import { toggleMobileDrawer } from "redux/slices/slice";
+import { ActionArea } from "container/ActionArea/ActionArea";
+import { toggleMobileDrawer } from "redux/slices/toggleDrawer.slice";
+import { setDayFilter, setProjectFilter } from "redux/slices/actionArea.slice";
 import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { makeStyles, Theme, Hidden, Box } from "@material-ui/core";
 import { SideDrawer } from "components/UI/Navigation/SideDrawer/SideDrawer";
@@ -37,49 +38,73 @@ const useStyles = makeStyles((theme: Theme) => ({
 const HomePage: React.FC = () => {
   const [tasks, setTasks] = useState(allTasks);
   const [projects, setProjects] = useState(projectsArray);
-  const [filterDay, setFilterDay] = useState("Inbox");
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
-  const showMobileDrawer = useAppSelector(
-    (state) => state.toggleDrawerReducer.show
+  const dayFilter = useAppSelector(
+    (state) => state.actionAreaReducer.dayFilter
   );
+  const projectFilter = useAppSelector(
+    (state) => state.actionAreaReducer.projectFilter
+  );
+  const showMobileDrawer = useAppSelector((state) => state.toggleReducer.show);
 
-  const filterClickHandler = (current: string, mobileScreen?: boolean) => {
-    setFilterDay(current);
+  const dayFilterHandler = (current: string, mobileScreen?: boolean) => {
+    dispatch(setDayFilter(current));
+    dispatch(setProjectFilter(""));
     mobileScreen && dispatch(toggleMobileDrawer());
   };
 
-  let customisedResult = tasks.filter((x) =>
-    filterDay === "Inbox" ||
-    filterDay === "Today" ||
-    filterDay === "Next 7 days"
-      ? x.dueDay === filterDay
-      : x.project === filterDay
-  );
+  const projectFilterHandler = (current: string, mobileScreen?: boolean) => {
+    dispatch(setDayFilter(""));
+    dispatch(setProjectFilter(current));
+    mobileScreen && dispatch(toggleMobileDrawer());
+  };
+
+  let customisedResult = tasks.filter((x) => {
+    return dayFilter === "Inbox" ||
+      dayFilter === "Today" ||
+      dayFilter === "Next 7 days"
+      ? x.dueDay === dayFilter
+      : x.project === projectFilter;
+  });
 
   return (
     <Box className={classes.HomePageLayout}>
       <Hidden xsDown>
-        <Action projects={projects} clickHandler={filterClickHandler} />
+        <ActionArea
+          projects={projects}
+          setTasks={setTasks}
+          filterDays={dayFilterHandler}
+          filterProjects={projectFilterHandler}
+        />
       </Hidden>
 
       <Hidden smUp>
         <SideDrawer show={showMobileDrawer}>
-          <Action
+          <ActionArea
             mobileScreen
             projects={projects}
-            clickHandler={filterClickHandler}
+            setTasks={setTasks}
+            filterDays={dayFilterHandler}
+            filterProjects={projectFilterHandler}
           />
         </SideDrawer>
       </Hidden>
 
       <Box className={classes.LayoutToDos}>
-        <p className={classes.ToDosHeading}>{filterDay}</p>
+        <p className={classes.ToDosHeading}>
+          {dayFilter ? dayFilter : projectFilter}
+        </p>
         {React.Children.toArray(
           customisedResult.map((x) => <ToDo toDo={x.toDo} />)
         )}
-        <AddTask projects={projects} day={filterDay} />
+        <AddTask
+          day={dayFilter}
+          project={projectFilter}
+          projects={projects}
+          setTasks={setTasks}
+        />
       </Box>
     </Box>
   );

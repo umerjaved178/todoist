@@ -3,7 +3,7 @@ import { IconContext } from "react-icons";
 import { GiHamburgerMenu } from "react-icons/gi";
 import ToolbarButtons from "./NavbarButtons/NavbarButtons";
 import { makeStyles, Theme, Hidden, Box } from "@material-ui/core";
-import { toggleMobileDrawer } from "redux/slices/slice";
+import { toggleMobileDrawer } from "redux/slices/toggleDrawer.slice";
 import { useAppDispatch } from "redux/hooks";
 
 const useStyles = makeStyles((theme: Theme) => ({

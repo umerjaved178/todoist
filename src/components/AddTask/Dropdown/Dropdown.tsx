@@ -1,7 +1,9 @@
 import React from "react";
-import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { useAppDispatch } from "redux/hooks";
+import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles, Theme, Box } from "@material-ui/core";
+import { setDayFilter, setProjectFilter } from "redux/slices/actionArea.slice";
 
 const useStyles = makeStyles((theme: Theme) => ({
   Icon: {
@@ -19,9 +21,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface Props {
   options: string[];
   Icon?: any;
+  day?: boolean;
+  setProject: any;
+  setDay: any;
 }
 
-const Dropdown: React.FC<Props> = ({ options, Icon }) => {
+const Dropdown: React.FC<Props> = ({
+  options,
+  Icon,
+  day,
+  setDay,
+  setProject,
+}) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -32,8 +43,10 @@ const Dropdown: React.FC<Props> = ({ options, Icon }) => {
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement>,
-    index: number
+    index: number,
+    option: string
   ) => {
+    day ? setDay(option) : setProject(option);
     setSelectedIndex(index);
     setAnchorEl(null);
   };
@@ -59,7 +72,7 @@ const Dropdown: React.FC<Props> = ({ options, Icon }) => {
             key={option}
             className={classes.text}
             selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
+            onClick={(event) => handleMenuItemClick(event, index, option)}
           >
             {option}
           </MenuItem>

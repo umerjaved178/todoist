@@ -15,14 +15,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
   projects: string[];
-  clickHandler: Function;
+  filterDays: Function;
+  setTasks: Function;
+  filterProjects: Function;
   mobileScreen?: boolean;
 }
 
-export const Action: React.FC<Props> = ({
+export const ActionArea: React.FC<Props> = ({
   projects,
-  clickHandler,
+  setTasks,
+  filterDays,
   mobileScreen,
+  filterProjects,
 }) => {
   const classes = useStyles();
   return (
@@ -33,15 +37,17 @@ export const Action: React.FC<Props> = ({
             <Day
               day={x.day}
               icon={x.icon}
-              clickHandler={clickHandler}
+              setTasks={setTasks}
+              filterDays={filterDays}
               mobileScreen={mobileScreen}
             />
           ))
         )}
       </Box>
       <Project
+        setTasks={setTasks}
         projects={projects}
-        clickHandler={clickHandler}
+        filterProjects={filterProjects}
         mobileScreen={mobileScreen}
       />
     </Box>

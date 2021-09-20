@@ -1,27 +1,27 @@
 export const allTasks = [
   {
     toDo: "cooking and planning",
-    project: "MUSIC",
+    project: "MUSIC 🎼",
     dueDay: "Inbox",
   },
   {
     toDo: "Sheesha",
-    project: "none",
+    project: "",
     dueDay: "Inbox",
   },
   {
     toDo: "Gardening",
-    project: "none",
+    project: "",
     dueDay: "Inbox",
   },
   {
     toDo: "Sleeping",
-    project: "none",
+    project: "",
     dueDay: "Today",
   },
   {
     toDo: "cooking & future planning",
-    project: "FUTURE",
+    project: "FUTURE 🎯",
     dueDay: "Next 7 days",
   },
 ];

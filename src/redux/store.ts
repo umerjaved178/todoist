@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import toggleReducer from "redux/slices/slice";
+import toggleReducer from "redux/slices/toggleDrawer.slice";
+import actionAreaReducer from "redux/slices/actionArea.slice";
 
 export const store = configureStore({
   reducer: {
-    toggleDrawerReducer: toggleReducer,
+    toggleReducer: toggleReducer,
+    actionAreaReducer: actionAreaReducer,
   },
 });
 

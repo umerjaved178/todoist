@@ -9,7 +9,7 @@ const initialState: showType = {
 };
 
 export const slice = createSlice({
-  name: "toggleMobileSideDrawer",
+  name: "mainSlice",
   initialState,
   reducers: {
     toggleMobileDrawer: (state) => {

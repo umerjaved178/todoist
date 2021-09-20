@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Box } from "@material-ui/core";
-import { toggleMobileDrawer } from "redux/slices/slice";
+import { toggleMobileDrawer } from "redux/slices/toggleDrawer.slice";
 import { useAppDispatch } from "redux/hooks";
 
 const useStyles = makeStyles((theme: Theme) => ({

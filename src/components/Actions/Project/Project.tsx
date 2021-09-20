@@ -46,12 +46,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
+  setTasks: Function;
   projects: string[];
-  clickHandler: Function;
+  filterProjects: Function;
   mobileScreen?: boolean;
 }
 
-const Project: React.FC<Props> = ({ projects, clickHandler, mobileScreen }) => {
+const Project: React.FC<Props> = ({
+  projects,
+  setTasks,
+  filterProjects,
+  mobileScreen,
+}) => {
   const classes = useStyles();
 
   return (
@@ -72,7 +78,7 @@ const Project: React.FC<Props> = ({ projects, clickHandler, mobileScreen }) => {
             <p
               className={classes.eachProj}
               tabIndex={1}
-              onClick={() => clickHandler(x, mobileScreen)}
+              onClick={() => filterProjects(x, mobileScreen)}
             >
               {x}
             </p>
